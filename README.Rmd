@@ -1,0 +1,33 @@
+---
+title: "Homework 2"
+author: "Christine Hou"
+date: "2022-10-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r,comment=NA}
+library(tidyverse)
+library(nycflights13)
+library(dbplyr)
+```
+
+
+### What time of day should you fly if you want to avoid delays as much as possible? Does this choice depend on anything? Season? Weather? Airport? Airline? Find three patterns (“null results” are ok!). Write your results into Rmarkdown. Include a short introduction that summarizes the three results. Then, have a section for each finding. Support each finding with data summaries and visualizations. Include your code when necessary. This shouldn’t be long, but it might take some time to find the things you want to talk about and lay them out in an orderly way.
+
+```{r,comment=NA}
+flights %>% filter (dep_delay > 0) %>% 
+  group_by(hour) %>%
+  summarize(avg_delay = mean(dep_delay)) %>%
+  arrange(avg_delay)
+```
+
+> Generally, I filter the rows wth positive `dep_delay` and group by `hour`, then calculate the average delay time to see the minimum average delay time. It's clear that the `avg_delay = 15.3` is the shortest when `hour = 1`.
+
+```{r,comment=NA}
+
+```
+
